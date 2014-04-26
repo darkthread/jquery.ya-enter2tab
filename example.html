@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>jQuery Enter2Tab Demo</title>
+    <style>
+        body
+        {
+            font-size: 10pt;
+            font-family: Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+        }
+
+        td
+        {
+            padding: 2px;
+            background-color: #ffffcc;
+        }
+
+        fieldset table td.hdr
+        {
+            width: 60px;
+            padding-right: 6px;
+            text-align: right;
+            background-color: #0094ff;
+            color: white;
+            text-shadow: 1px 1px 2px #222;
+        }
+
+        input
+        {
+            width: 50px;
+        }
+
+            input.cbx
+            {
+                display: inline-block;
+                width: 15px;
+            }
+
+        :focus
+        {
+            background-color: yellow;
+        }
+
+        .mark
+        {
+            border: 1px solid orange;
+            color: blue;
+        }
+        fieldset {
+            position: absolute; top: 250px;
+            padding: 3px;
+        }
+        fieldset table {
+            border: 1px solid #444;
+        }
+        #form2,#form3
+        {
+            left: 295px;
+        }
+        #form3 {
+            top: 430px;
+        }
+            fieldset.e2t-active
+            {
+                border: 1px solid brown;
+            }
+
+        .e2t-active table td
+        {
+            background-color: #ffcc99;
+        }
+
+        #field5
+        {
+            display: none;
+        }
+
+        .banner
+        {
+            width: 480px;
+            background-color: #ff9933;
+            font-size: 12pt;
+            font-weight: bolder;
+            padding: 6px;
+            color: white;
+            text-shadow: 1px 1px 1px #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        Yet Another Enter To Tab Plugin Example
+    </div>
+    <div>
+        <p>form 1: 
+        <ul>
+            <li>focus is moving according to tabindex, not element order in DOM</li>
+            <li>readonly, disabled, hidden fields won't get focus</li>
+            <li>toggle field 5 and 7 to join the focus loop</li>
+        </ul>
+        </p>
+        <p>form 2: field 2 with css "e2t-ignore" can get focus by tab key, and is ignored by enter key
+        </p>
+        <p>form 1,2,3: focus will loop inside each form, never across diffrent containers</p>
+    </div>
+    <fieldset id='form1'>
+        <legend>Form 1</legend>
+        <table>
+            <tr>
+                <td class="hdr">Field 1</td>
+                <td>
+                    <input tabindex='1' value='1' /></td>
+            </tr>
+            <tr>
+                <td class="hdr">Field 4</td>
+                <td>
+                    <input tabindex='4' value='4' readonly />
+                    (readonly)
+                </td>
+            </tr>
+            <tr>
+                <td class="hdr">Field 6</td>
+                <td>
+                    <select tabindex='6'>
+                        <option>6</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="hdr">Field 7</td>
+                <td>
+                    <input tabindex='7' value='7' id="inp7" disabled />
+                    disabled
+                </td>
+            </tr>
+            <tr>
+                <td class="hdr">Field 9</td>
+                <td>
+                    <span>9</span>
+                    <input tabindex='9' type='checkbox' class='cbx' />
+                </td>
+            </tr>
+            <tr>
+                <td class="hdr">Field 3</td>
+                <td>
+                    <input tabindex='3' value='3' /></td>
+            </tr>
+            <tr id="field5">
+                <td class="hdr">Field 5</td>
+                <td>
+                    <input tabindex='5' value='5' /></td>
+            </tr>
+            <tr>
+                <td class="hdr">Field 2</td>
+                <td>
+                    <input tabindex='2' value='2' /></td>
+            </tr>
+            <tr>
+                <td class="hdr">Field 10</td>
+                <td>
+                    <textarea tabindex='10'>10</textarea></td>
+            </tr>
+            <tr>
+                <td class="hdr">Field 11</td>
+                <td>
+                    <input tabindex='11' value='11' /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button id='show5' tabindex="20" class="e2t-ignore">Toggle Field 5</button>
+                    <button id='enable7' tabindex="21" class="e2t-ignore">Toggle Field 7</button>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    <fieldset id='form2'>
+        <legend>Form 2</legend>
+        <table>
+            <tr>
+                <td class="hdr">Field 1
+                </td>
+                <td style="width: 100px">
+                    <input tabindex="1" value="1" />
+                </td>
+            </tr>
+            <tr>
+                <td class="hdr">Field 2
+                </td>
+                <td>
+                    <input tabindex="2" value="2" class="e2t-ignore" />
+                    <br />.e2t-ignore
+                </td>
+            </tr>
+            <tr>
+                <td class="hdr">Field 3
+                </td>
+                <td>
+                    <input tabindex="3" value="3" />
+                </td>
+            </tr>
+            <tr>
+                <td class="hdr">Field 4
+                </td>
+                <td>
+                    <input tabindex="4" value="4" />
+                </td>
+            </tr>
+
+        </table>
+    </fieldset>
+    <fieldset id='form3'>
+        <legend>Form 3</legend>
+        <table>
+            <tr>
+                <td class="hdr">
+                    Field 1
+                </td>
+                <td style="width: 100px">
+                    <input tabindex="1" value="1" />
+                </td>
+            </tr>
+            <tr>
+                <td class="hdr">
+                    Field 2
+                </td>
+                <td>
+                    <input tabindex="2" value="2" />
+                </td>
+            </tr>
+            <tr>
+                <td class="hdr">
+                    Field 3
+                </td>
+                <td>
+                    <input tabindex="3" value="3" />
+                </td>
+            </tr>
+         </table>
+    </fieldset>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.js ">
+    </script>
+    <script src="scripts/jquery.ya-enter2tab.js"></script>
+    <script>
+        var $form = $("#form1");
+
+        function markCandidates() {
+            $form.getFocusCandidates().addClass("mark");
+        }
+        markCandidates();
+
+        $("#show5").click(function () {
+            $("#field5").toggle();
+            markCandidates();
+        });
+        $("#enable7").click(function () {
+            var $inp = $("#inp7");
+            if ($inp.attr("disabled") == undefined)
+                $inp.attr("disabled", "disabled");
+            else
+                $inp.removeAttr("disabled");
+            markCandidates();
+        });
+
+        $("fieldset").enableEnterToTab();
+    </script>
+</body>
+</html>
