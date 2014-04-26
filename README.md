@@ -1,7 +1,7 @@
 jquery.ya-enter2tab.js
 ======================
 
-**[中文版說明請參見"說明.md"]**
+**[中文說明](說明.md)**
 
 There are already a bunch of "enter to tab" plugins in the world, but it's still hard to find one which exactly fits my needs.  So, "Yet Another Enter to Tab" jQuery plugin is here. :P
 
