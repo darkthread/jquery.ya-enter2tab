@@ -32,7 +32,7 @@ When you press enter key on input tabindex=2, the focus will move to input tabin
 #### Demo
 ![Screenshot](https://raw.githubusercontent.com/darkthread/jquery.ya-enter2tab/master/images/Demo3.gif)  
 Field 5 is assgined with class="e2t-ignore".  It is skipped when using enter to switch focus and included in focus loop by pressing tab.  
-**Note: Browser UI is included in tab key focus loop.  For example,  press tab on Field 4 will move the focus to browser's address bar.**
+**Note: Browser UI is included in tab key focus loop.  For example,  press tab on Field 4 will move the focus to browser's address bar.  If you want ya-enter2tab to handle tab key, you can use .enableEnter2Tab({ captureTabKey: true }) option.**
 
 ## FOCUS MOVING RULE
 
@@ -61,7 +61,7 @@ At first, focus loop skips hidden Field 5 and disabled Field 7.  After using Jav
 
 You can put fields into two container, for example div A and div B, and execute .enableEnterToTab() separately.  When you press enter or tab on fields of div A, the focus loop will be limited in fields inside div A, none of fields of div B will get focus by enter or tab key.  It is especially useful when you have multiple input areas in single page.
 
-A little trick is used to accomplish focus loop grouping.  When any field of div A get focus by mouse click, ya-enter2tab will find all other containers which enablingEnterToTab, find all elements with tabindex attribute in the container, save original tabindex value to data-tab-index attribute and change tabindex to -1 for avoiding getting focus.  In the same time, ya-enter2tab will check div A's elements to restore tabindex values from data-tab-index attributes.   If you want to avoid any other input getting focus, remember to put them in a container and .enableEnterToTab().
+Focus loop grouping works only on enter key, tab key is still handled by browser, so the focus may move to fields of other container, even browser address bar  when you hit tab key.  If you want to limit the focus looping inside the container only by tab key, you can use .enableEnter2Tab({ captureTabKey: true }) to ask ya-enter2tab to handle tab keydown event.
 
 #### Demo
 ![Screenshot](https://raw.githubusercontent.com/darkthread/jquery.ya-enter2tab/master/images/Demo4.gif)  
