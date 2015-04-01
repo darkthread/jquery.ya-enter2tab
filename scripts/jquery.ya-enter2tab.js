@@ -1,6 +1,6 @@
 ﻿/*!
  * jQuery Yet Another Enter To Tab plugin
- * Version 0.9.5
+ * Version 0.9.6
  * @requires jQuery v1.9 or later
  *
  * by Jeffrey Lee, http://blog.darkthread.net/
@@ -17,6 +17,8 @@ ver 0.9.5 2014-04-28
  * focus loop grouping logic refactored
  * add options to enableEnterToTab()
  * add "captureTabKey" option to capture tab keydown event, prevent focus from going out of container
+var 0.9.6 2015-04-01
+ * fix: reserve shift-tab default behavior. [thanks for alannick's feedback]
 */
  
 (function () {
@@ -63,7 +65,7 @@ ver 0.9.5 2014-04-28
             var $container = $(this);
             $container.addClass(CONTAINER_CSS)
             .on("keydown", "[tabindex]:not(textarea)", function (e) {
-                var isTab = e.which == 9;
+                var isTab = !e.shiftKey && e.which == 9;
                 var isEnter = e.which == 13;
                 var $fld = $(this);
                 var isIgnore = $fld.is(".e2t-ignore"), isKeyOff = $fld.is(".e2t-keyoff");
